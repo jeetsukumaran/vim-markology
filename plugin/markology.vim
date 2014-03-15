@@ -44,6 +44,7 @@ if !exists('g:markology_ignore_name' ) | let g:markology_ignore_name  = ""   | e
 if !exists('g:markology_hlline_lower') | let g:markology_hlline_lower = "0"  | endif
 if !exists('g:markology_hlline_upper') | let g:markology_hlline_upper = "0"  | endif
 if !exists('g:markology_hlline_other') | let g:markology_hlline_other = "0"  | endif
+if !exists('g:markology_set_location_list_convenience_maps') | let g:markology_set_location_list_convenience_maps = 1  | endif
 
 " This is the default, and used in MarkologySetup to set up info for any
 " possible mark (not just those specified in the possibly user-supplied list
@@ -735,6 +736,11 @@ function! s:MarksLoc()
                 \"type": "m", "text": v:val . ": " . getline(line("''" . v:val))}'),
                 \'v:val.lnum > 0'))
     lopen
+    if !exists("g:markology_set_location_list_convenience_maps") || g:markology_set_location_list_convenience_maps
+        nnoremap <buffer> <silent> q        :q<CR>
+        noremap  <buffer> <silent> <ESC>    :q<CR>
+        noremap  <buffer> <silent> <ENTER>  <CR>:lcl<CR>
+    endif
 endfunction
 
 function! s:MarksQF()
