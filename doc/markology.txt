@@ -57,13 +57,13 @@ Note: This plugin requires Vim 6.x compiled with the |+signs| feature.
 ===============================================================================
 Commands                                                   *markology-commands*
 
-                                                               *MarkologyToggle*
-:MarkologyToggle
+:MarkologyEnable                                            *MarkologyEnable*
+   This command will force the display of marks on.
+
+                                                             *MarkologyToggle*
+:MarkologyEnableToggle
    This command will toggle the display of marks on or off.
 
-
-:MarkologyEnable                                                         *MarkologyEnable*
-   This command will force the display of marks on.
 
                                                       *MarkologyPlaceMarkToggle*
 :MarkologyPlaceMarkToggle
@@ -126,12 +126,13 @@ All the above commands are available to assigned to mappings using the
 |<Plug>|system. If no key mappings are set, the following mappings are setup
 by default:
 
+<Leader>mo  |MarkologyEnable|
+            Switches Markology on.
+            (Mapping can be overridden using: <Plug>MarkologyEnable)
+
 <Leader>mt  |MarkologyEnableToggle|
             Toggles Markology on and off.
-
-<Leader>mo  |MarkologyEnable|
-            Forces Markology on.
-            (Mapping can be overridden using: <Plug>MarkologyEnable)
+            (Mapping can be overridden using: <Plug>MarkologyEnableToggle)
 
 <Leader>m=  |MarkologyPlaceMarkToggle|
             Toggles the mark at the current line.
@@ -178,8 +179,8 @@ by default:
 These default mappings can be overridden by default in your '~/.vimrc', by, for
 example: >
 
-    nmap <silent> ;! <Plug>MarkologyEnableToggle
     nmap <silent> ;m <Plug>MarkologyEnable
+    nmap <silent> ;! <Plug>MarkologyEnableToggle
     nmap <silent> ;+ <Plug>MarkologyPlaceMark
     nmap <silent> ;= <Plug>MarkologyPlaceMarkToggle
     nmap <silent> ;- <Plug>MarkologyClearMark
