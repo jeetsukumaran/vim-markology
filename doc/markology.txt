@@ -55,17 +55,20 @@ between |marks| and listing/viewing  |marks| .
 Note: This plugin requires Vim 6.x compiled with the |+signs| feature.
 
 ===============================================================================
-Commands                                                   *markology-commands*
+Commands                                                    *markology-commands*
 
-:MarkologyEnable                                            *MarkologyEnable*
-   This command will force the display of marks on.
+:MarkologyEnable                                               *MarkologyEnable*
+   This command will switch display of marks on.
 
-                                                             *MarkologyToggle*
-:MarkologyEnableToggle
+:MarkologyDisable                                             *MarkologyDisable*
+   This command will switch the display of marks off.
+
+                                                               *MarkologyToggle*
+:MarkologyToggle
    This command will toggle the display of marks on or off.
 
 
-                                                      *MarkologyPlaceMarkToggle*
+                                                       *MarkologyPlaceMarkToggle*
 :MarkologyPlaceMarkToggle
     If there is already a mark on current line, this command will remove it.
     If there are no marks on the current line, this command will place a local
@@ -98,41 +101,45 @@ Commands                                                   *markology-commands*
     This command will jump to the previous closest local ('a'-'z') mark in the
     buffer, with wrapping controlled by |g:markology_local_marks_wrap_search|.
 
-                                                     *MarkologyNextLocalMarkByAlpha*
+                                                 *MarkologyNextLocalMarkByAlpha*
 :MarkologyNextLocalMarkByAlpha
     This command will jump to the next local ('a'-'z') mark in alphabetical
     sequence in the buffer, with wrapping controlled by
     |g:markology_local_marks_wrap_search|.
 
-                                                     *MarkologyPrevLocalMarkByAlpha*
+                                                 *MarkologyPrevLocalMarkByAlpha*
 :MarkologyPrevLocalMarkByAlpha
     This command will jump to the previous local ('a'-'z') mark in alphabetical
     sequence in the buffer, with wrapping controlled by
     |g:markology_local_marks_wrap_search|.
 
-                                                     *MarkologyLocationList*
+                                                         *MarkologyLocationList*
 :MarkologyLocationList
     This command will open a |location-list| for the current window and
     display all the local marks.
 
-                                                     *MarkologyQuickFix*
+                                                            *MarkologyQuickFix*
 :MarkologyQuickFix
     This command will open the |quickfix| window and display all marks.
 
 ===============================================================================
-Mappings                                                *markology-mappings*
+Mappings                                                     *markology-mappings*
 
 All the above commands are available to assigned to mappings using the
 |<Plug>|system. If no key mappings are set, the following mappings are setup
 by default:
 
-<Leader>mo  |MarkologyEnable|
+<Leader>mm  |MarkologyEnable|
             Switches Markology on.
             (Mapping can be overridden using: <Plug>MarkologyEnable)
 
-<Leader>mt  |MarkologyEnableToggle|
+<Leader>mM  |MarkologyDisable|
+            Switches Markology off.
+            (Mapping can be overridden using: <Plug>MarkologyDisable)
+
+<Leader>m!  |MarkologyToggle|
             Toggles Markology on and off.
-            (Mapping can be overridden using: <Plug>MarkologyEnableToggle)
+            (Mapping can be overridden using: <Plug>MarkologyToggle)
 
 <Leader>m=  |MarkologyPlaceMarkToggle|
             Toggles the mark at the current line.
@@ -180,7 +187,8 @@ These default mappings can be overridden by default in your '~/.vimrc', by, for
 example: >
 
     nmap <silent> ;m <Plug>MarkologyEnable
-    nmap <silent> ;! <Plug>MarkologyEnableToggle
+    nmap <silent> ;M <Plug>MarkologyDisable
+    nmap <silent> ;! <Plug>MarkologyToggle
     nmap <silent> ;+ <Plug>MarkologyPlaceMark
     nmap <silent> ;= <Plug>MarkologyPlaceMarkToggle
     nmap <silent> ;- <Plug>MarkologyClearMark
@@ -191,6 +199,7 @@ example: >
     nmap <silent> ;{ <Plug>MarkologyPrevLocalMarkByAlpha
     nmap <silent> ;l <Plug>MarkologyLocationList
     nmap <silent> ;q <Plug>MarkologyQuickFix
+<
 
 ===============================================================================
 Configuration                                      *markology-configuration*

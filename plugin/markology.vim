@@ -51,46 +51,49 @@ if !exists('g:markology_hlline_other') | let g:markology_hlline_other = "0"  | e
 let s:all_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]{}()\""
 
 " Commands
-com! -nargs=0 MarkologyEnableToggle               :call <sid>MarkologyEnableToggle()
-com! -nargs=0 MarkologyEnable                   :call <sid>MarkologyEnable()
-com! -nargs=0 MarkologyClearMark            :call <sid>MarkologyClearMark()
-com! -nargs=0 MarkologyClearAll             :call <sid>MarkologyClearAll()
-com! -nargs=0 MarkologyPlaceMark            :call <sid>MarkologyPlaceMark()
-com! -nargs=0 MarkologyPlaceMarkToggle      :call <sid>MarkologyPlaceMarkToggle()
-com! -nargs=0 MarkologyNextLocalMarkPos     :call <sid>NextByPos()
-com! -nargs=0 MarkologyPrevLocalMarkPos     :call <sid>PrevByPos()
-com! -nargs=0 MarkologyNextLocalMarkByAlpha :call <sid>NextByAlpha()
-com! -nargs=0 MarkologyPrevLocalMarkByAlpha :call <sid>PrevByAlpha()
-com! -nargs=0 MarkologyLocationList         :call <sid>MarksLoc()
-com! -nargs=0 MarkologyQuickFix             :call <sid>MarksQF()
+com! -nargs=0 MarkologyEnable                           :call <sid>MarkologyEnable()
+com! -nargs=0 MarkologyDisable                          :call <sid>MarkologyDisable()
+com! -nargs=0 MarkologyToggle                           :call <sid>MarkologyToggle()
+com! -nargs=0 MarkologyClearMark                        :call <sid>MarkologyClearMark()
+com! -nargs=0 MarkologyClearAll                         :call <sid>MarkologyClearAll()
+com! -nargs=0 MarkologyPlaceMark                        :call <sid>MarkologyPlaceMark()
+com! -nargs=0 MarkologyPlaceMarkToggle                  :call <sid>MarkologyPlaceMarkToggle()
+com! -nargs=0 MarkologyNextLocalMarkPos                 :call <sid>NextByPos()
+com! -nargs=0 MarkologyPrevLocalMarkPos                 :call <sid>PrevByPos()
+com! -nargs=0 MarkologyNextLocalMarkByAlpha             :call <sid>NextByAlpha()
+com! -nargs=0 MarkologyPrevLocalMarkByAlpha             :call <sid>PrevByAlpha()
+com! -nargs=0 MarkologyLocationList                     :call <sid>MarksLoc()
+com! -nargs=0 MarkologyQuickFix                         :call <sid>MarksQF()
 
 " Mappings
-nnoremap <silent> <Plug>MarkologyEnableToggle       :MarkologyEnableToggle<CR>
-nnoremap <silent> <Plug>MarkologyEnable           :MarkologyEnable<CR>
-nnoremap <silent> <Plug>MarkologyPlaceMark            :MarkologyPlaceMark<CR>
-nnoremap <silent> <Plug>MarkologyPlaceMarkToggle      :MarkologyPlaceMarkToggle<CR>
-nnoremap <silent> <Plug>MarkologyClearMark            :MarkologyClearMark<CR>
-nnoremap <silent> <Plug>MarkologyClearAll             :MarkologyClearAll<CR>
-nnoremap <silent> <Plug>MarkologyNextLocalMarkPos     :MarkologyNextLocalMarkPos<CR>
-nnoremap <silent> <Plug>MarkologyPrevLocalMarkPos     :MarkologyPrevLocalMarkPos<CR>
-nnoremap <silent> <Plug>MarkologyNextLocalMarkByAlpha :MarkologyNextLocalMarkByAlpha<CR>
-nnoremap <silent> <Plug>MarkologyPrevLocalMarkByAlpha :MarkologyPrevLocalMarkByAlpha<CR>
-nnoremap <silent> <Plug>MarkologyLocationList         :MarkologyLocationList<CR>
-nnoremap <silent> <Plug>MarkologyQuickFix             :MarkologyQuickFix<CR>
+nnoremap <silent> <Plug>MarkologyEnable                 :MarkologyEnable<CR>
+nnoremap <silent> <Plug>MarkologyDisable                :MarkologyDisable<CR>
+nnoremap <silent> <Plug>MarkologyToggle                 :MarkologyToggle<CR>
+nnoremap <silent> <Plug>MarkologyPlaceMark              :MarkologyPlaceMark<CR>
+nnoremap <silent> <Plug>MarkologyPlaceMarkToggle        :MarkologyPlaceMarkToggle<CR>
+nnoremap <silent> <Plug>MarkologyClearMark              :MarkologyClearMark<CR>
+nnoremap <silent> <Plug>MarkologyClearAll               :MarkologyClearAll<CR>
+nnoremap <silent> <Plug>MarkologyNextLocalMarkPos       :MarkologyNextLocalMarkPos<CR>
+nnoremap <silent> <Plug>MarkologyPrevLocalMarkPos       :MarkologyPrevLocalMarkPos<CR>
+nnoremap <silent> <Plug>MarkologyNextLocalMarkByAlpha   :MarkologyNextLocalMarkByAlpha<CR>
+nnoremap <silent> <Plug>MarkologyPrevLocalMarkByAlpha   :MarkologyPrevLocalMarkByAlpha<CR>
+nnoremap <silent> <Plug>MarkologyLocationList           :MarkologyLocationList<CR>
+nnoremap <silent> <Plug>MarkologyQuickFix               :MarkologyQuickFix<CR>
 
 " Set Default Mappings (NOTE: Leave the '|'s immediately following the '<cr>' so the mapping does not contain any trailing spaces!)
-if !hasmapto( '<Plug>MarkologyEnableToggle' )  | map <silent> <leader>m! :MarkologyEnableToggle<cr>|    endif
-if !hasmapto( '<Plug>MarkologyEnable' )  | map <silent> <leader>mm :MarkologyEnable<cr>|        endif
-if !hasmapto( '<Plug>MarkologyPlaceMark' )  | map <silent> <leader>m+ :MarkologyPlaceMark<cr>| endif
-if !hasmapto( '<Plug>MarkologyPlaceMarkToggle' )  | map <silent> <leader>m= :MarkologyPlaceMarkToggle<cr>| endif
-if !hasmapto( '<Plug>MarkologyClearMark' )  | map <silent> <leader>m- :MarkologyClearMark<cr>| endif
-if !hasmapto( '<Plug>MarkologyClearAll' )  | map <silent> <leader>m_ :MarkologyClearAll<cr>|  endif
-if !hasmapto( '<Plug>MarkologyNextLocalMarkPos' )  | map <silent> <leader>m] :MarkologyNextLocalMarkPos<cr>|    endif
-if !hasmapto( '<Plug>MarkologyPrevLocalMarkPos' )  | map <silent> <leader>m[ :MarkologyPrevLocalMarkPos<cr>|        endif
-if !hasmapto( '<Plug>MarkologyNextLocalMarkByAlpha' )  | map <silent> <leader>m{ :MarkologyNextLocalMarkByAlpha<cr>| endif
-if !hasmapto( '<Plug>MarkologyPrevLocalMarkByAlpha' )  | map <silent> <leader>m} :MarkologyPrevLocalMarkByAlpha<cr>|  endif
-if !hasmapto( '<Plug>MarkologyLocationList' )  | map <silent> <leader>ml :MarkologyLocationList<cr>| endif
-if !hasmapto( '<Plug>MarkologyQuickFix' )  | map <silent> <leader>mq :MarkologyQuickFix<cr>|  endif
+if !hasmapto( '<Plug>MarkologyEnable' )               |  map <silent> <leader>mm :MarkologyEnable<cr>               |  endif
+if !hasmapto( '<Plug>MarkologyDisable' )              |  map <silent> <leader>mM :MarkologyDisable<cr>              |  endif
+if !hasmapto( '<Plug>MarkologyToggle' )               |  map <silent> <leader>m! :MarkologyToggle<cr>               |  endif
+if !hasmapto( '<Plug>MarkologyPlaceMark' )            |  map <silent> <leader>m+ :MarkologyPlaceMark<cr>            |  endif
+if !hasmapto( '<Plug>MarkologyPlaceMarkToggle' )      |  map <silent> <leader>m= :MarkologyPlaceMarkToggle<cr>      |  endif
+if !hasmapto( '<Plug>MarkologyClearMark' )            |  map <silent> <leader>m- :MarkologyClearMark<cr>            |  endif
+if !hasmapto( '<Plug>MarkologyClearAll' )             |  map <silent> <leader>m_ :MarkologyClearAll<cr>             |  endif
+if !hasmapto( '<Plug>MarkologyNextLocalMarkPos' )     |  map <silent> <leader>m] :MarkologyNextLocalMarkPos<cr>     |  endif
+if !hasmapto( '<Plug>MarkologyPrevLocalMarkPos' )     |  map <silent> <leader>m[ :MarkologyPrevLocalMarkPos<cr>     |  endif
+if !hasmapto( '<Plug>MarkologyNextLocalMarkByAlpha' ) |  map <silent> <leader>m{ :MarkologyNextLocalMarkByAlpha<cr> |  endif
+if !hasmapto( '<Plug>MarkologyPrevLocalMarkByAlpha' ) |  map <silent> <leader>m} :MarkologyPrevLocalMarkByAlpha<cr> |  endif
+if !hasmapto( '<Plug>MarkologyLocationList' )         |  map <silent> <leader>ml :MarkologyLocationList<cr>         |  endif
+if !hasmapto( '<Plug>MarkologyQuickFix' )             |  map <silent> <leader>mq :MarkologyQuickFix<cr>             |  endif
 noremap <script> \sm m
 noremap <silent> m :exe 'norm \sm'.nr2char(getchar())<bar>call <sid>Markology()<CR>
 
@@ -285,20 +288,10 @@ endf
 " Set things up
 call s:MarkologySetup()
 
-" Function: MarkologyEnable
+" Function: MarkologyStart
 " Description: Enable markology, and show them now.
-fun! s:MarkologyEnable()
-    if g:markology_enable == 0
-        call <sid>MarkologyEnableToggle()
-    else
-        call <sid>Markology()
-    endif
-endf
-
-" Function: MarkologyEnableToggle()
-" Description: This function toggles whether marks are displayed or not.
-fun! s:MarkologyEnableToggle()
-    if g:markology_enable == 0
+function! s:SetMarkologyStatus(state)
+    if a:state
         let g:markology_enable = 1
         call <sid>Markology()
         aug Markology
@@ -313,6 +306,28 @@ fun! s:MarkologyEnableToggle()
             au!
             autocmd BufEnter * call s:MarkologyHideAll()
         aug END
+    endif
+endfunction!
+
+" Function: MarkologyEnable
+" Description: Enable markology, and show them now.
+fun! s:MarkologyEnable()
+    call <sid>SetMarkologyStatus(1)
+endf
+
+" Function: MarkologyDisable
+" Description: Disable markology and hide signs.
+fun! s:MarkologyDisable()
+    call <sid>SetMarkologyStatus(0)
+endf
+
+" Function: MarkologyToggle()
+" Description: This function toggles whether marks are displayed or not.
+fun! s:MarkologyToggle()
+    if g:markology_enable
+        call <sid>SetMarkologyStatus(0)
+    else
+        call <sid>SetMarkologyStatus(1)
     endif
 endf
 
