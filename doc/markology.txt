@@ -309,7 +309,7 @@ highlight each of the marks.
   - MarkologyHLu  : This group is used to highlight all the uppercase marks.
   - MarkologyHLo  : This group is used to highlight all other marks.
   - MarkologyHLm  : This group is used when multiple marks are on the same line.
-  - MarkologyLine : This group is used to highlight lines if line-highlighting
+  - MarkologyHLLine : This group is used to highlight lines if line-highlighting
                   is selected.
 
 You can define your own highlighting by overriding these groups in your |vimrc|.

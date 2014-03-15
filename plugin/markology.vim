@@ -104,7 +104,7 @@ endif
 
 " Highlighting: Setup some nice colours to show the mark positions.
 hi default MarkologyHLl ctermfg=darkblue ctermbg=blue cterm=bold guifg=green guibg=black gui=bold
-hi default MarkologyLine cterm=underline gui=undercurl guisp=green
+hi default MarkologyHLLine cterm=underline gui=undercurl guisp=green
 hi default MarkologyHLu ctermfg=darkblue ctermbg=blue cterm=bold guifg=green guibg=black gui=bold
 hi default MarkologyHLo ctermfg=darkblue ctermbg=blue cterm=bold guifg=green guibg=black gui=bold
 hi default MarkologyHLm ctermfg=darkblue ctermbg=blue cterm=bold guifg=green guibg=black gui=bold
@@ -232,7 +232,7 @@ fun! s:MarkologySetup()
             let s:MarkologyDLink{nm} = 'MarkologyHLl'
             if g:markology_hlline_lower == 1
                 " let lhltext = 'linehl='.s:MarkologyDLink{nm}.nm
-                let lhltext = 'linehl=MarkologyLine'
+                let lhltext = 'linehl=MarkologyHLLine'
             endif
         elseif c =~# '[A-Z]'
             if strlen(g:markology_textupper) == 1
@@ -251,7 +251,7 @@ fun! s:MarkologySetup()
             let s:MarkologyDLink{nm} = 'MarkologyHLu'
             if g:markology_hlline_upper == 1
                 " let lhltext = 'linehl='.s:MarkologyDLink{nm}.nm
-                let lhltext = 'linehl=MarkologyLine'
+                let lhltext = 'linehl=MarkologyHLLine'
             endif
         else " Other signs, like ', ., etc.
             if strlen(g:markology_textother) == 1
@@ -270,7 +270,7 @@ fun! s:MarkologySetup()
             let s:MarkologyDLink{nm} = 'MarkologyHLo'
             if g:markology_hlline_other == 1
                 " let lhltext = 'linehl='.s:MarkologyDLink{nm}.nm
-                let lhltext = 'linehl=MarkologyLine'
+                let lhltext = 'linehl=MarkologyHLLine'
             endif
         endif
 
