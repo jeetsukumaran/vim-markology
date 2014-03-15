@@ -99,6 +99,7 @@ if g:markology_enable == 1
     aug Markology
         au!
         autocmd CursorHold * call s:Markology()
+        autocmd BufNewFile,Bufread * call s:Markology()
     aug END
 endif
 
@@ -303,6 +304,7 @@ fun! s:MarkologyEnableToggle()
         aug Markology
             au!
             autocmd CursorHold * call s:Markology()
+            autocmd BufNewFile,Bufread * call s:Markology()
         aug END
     else
         let g:markology_enable = 0
