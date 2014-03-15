@@ -1,0 +1,322 @@
+*markology.txt* Mark Visualization, Navigation and Management
+
+By Jeet Sukumaran <jeetsukumaran@gmail.com>
+
+===============================================================================
+Contents                                    *markology* *markology-contents*
+
+    1. Contents	             |markology-contents|
+    2. Introduction	     |markology-introduction|
+    3. Commands              |markology-commands|
+    4. Mappings              |markology-mappings|
+    5. Configuration         |markology-configuration|
+    6. Highlighting          |markology-highlighting|
+
+===============================================================================
+Introduction                                      *markology-introduction*
+
+Markology is a Frankenstein-ian beast that cobbles together:
+
+    1.  ShowMarks
+
+            ShowMarks - Visually show the location of marks
+            Version 2.2 (2004-08-06)
+            http://www.vim.org/scripts/script.php?script_id=152
+            By Anthony Kruize <trandor@labyrinth.net.au>
+            Michael Geddes <michaelrgeddes@optushome.com.au>
+
+    2.  The patch for the above, as given here:
+
+            http://easwy.com/blog/archives/advanced-vim-skills-advanced-move-method/
+
+        which fixes the issue of global marks showing up in files in which they
+        were *not* declared.
+
+    3. Mark_Tools
+
+            mark_tools : Toggle and navigate marks
+            Sergey Khorev <sergey.khorev@gmail.com>
+
+            http://www.vim.org/scripts/script.php?script_id=2929
+            https://bitbucket.org/khorser/vim-mark-tools
+            https://github.com/khorser/vim-mark-tools
+
+Like "ShowMarks", Markology provides visual representation of |marks| local to a
+buffer by placing a |sign| in the leftmost column of the buffer indicating the
+label of the mark and its location.
+
+Markology is activated by the |CursorHold| |autocommand| which is triggered
+every |updatetime| milliseconds.  This is set to 4000(4 seconds) by default.
+If this is too slow, setting it to a lower value will make it more responsive.
+
+Like "Mark_Tools", Markology provides commands and keymaps for navigating
+between |marks| and listing/viewing  |marks| .
+
+Note: This plugin requires Vim 6.x compiled with the |+signs| feature.
+
+===============================================================================
+Commands                                                   *markology-commands*
+
+                                                               *MarkologyToggle*
+:MarkologyToggle
+   This command will toggle the display of marks on or off.
+
+
+:MarkologyEnable                                                         *MarkologyEnable*
+   This command will force the display of marks on.
+
+                                                      *MarkologyPlaceMarkToggle*
+:MarkologyPlaceMarkToggle
+    If there is already a mark on current line, this command will remove it.
+    If there are no marks on the current line, this command will place a local
+    mark ('a'-'z') on the current line.
+
+                                                            *MarkologyPlaceMark*
+:MarkologyPlaceMark
+   This command will place the next available mark on the current line.
+   NOTE: Only marks a-z are supported by this function.
+
+                                                            *MarkologyClearMark*
+:MarkologyClearMark
+   This command will clear the mark on the current line.
+   For Vim versions < 7.0 the mark is not actually deleted but moved to
+   line 1 and the associated sign removed.
+
+                                                             *MarkologyClearAll*
+:MarkologyClearAll
+   This command will clear all marks in the current buffer.
+   For Vim versions < 7.0 the marks are not actually deleted but moved to
+   line 1 and the associated signs removed.
+
+                                                     *MarkologyNextLocalMarkPos*
+:MarkologyNextLocalMarkPos
+    This command will jump to the next closest local ('a'-'z') mark in the
+    buffer, with wrapping controlled by |g:markology_local_marks_wrap_search|.
+
+                                                     *MarkologyPrevLocalMarkPos*
+:MarkologyPrevLocalMarkPos
+    This command will jump to the previous closest local ('a'-'z') mark in the
+    buffer, with wrapping controlled by |g:markology_local_marks_wrap_search|.
+
+                                                     *MarkologyNextLocalMarkByAlpha*
+:MarkologyNextLocalMarkByAlpha
+    This command will jump to the next local ('a'-'z') mark in alphabetical
+    sequence in the buffer, with wrapping controlled by
+    |g:markology_local_marks_wrap_search|.
+
+                                                     *MarkologyPrevLocalMarkByAlpha*
+:MarkologyPrevLocalMarkByAlpha
+    This command will jump to the previous local ('a'-'z') mark in alphabetical
+    sequence in the buffer, with wrapping controlled by
+    |g:markology_local_marks_wrap_search|.
+
+                                                     *MarkologyLocationList*
+:MarkologyLocationList
+    This command will open a |location-list| for the current window and
+    display all the local marks.
+
+                                                     *MarkologyQuickFix*
+:MarkologyQuickFix
+    This command will open the |quickfix| window and display all marks.
+
+===============================================================================
+Mappings                                                *markology-mappings*
+
+All the above commands are available to assigned to mappings using the
+|<Plug>|system. If no key mappings are set, the following mappings are setup
+by default:
+
+<Leader>mt  |MarkologyEnableToggle|
+            Toggles Markology on and off.
+
+<Leader>mo  |MarkologyEnable|
+            Forces Markology on.
+            (Mapping can be overridden using: <Plug>MarkologyEnable)
+
+<Leader>m=  |MarkologyPlaceMarkToggle|
+            Toggles the mark at the current line.
+            (Mapping can be overridden using: <Plug>MarkologyPlaceMarkToggle)
+
+<Leader>m+  |MarkologyPlaceMark|
+            Places the next available mark on the current line.
+            (Mapping can be overridden using: <Plug>MarkologyPlaceMark)
+
+<Leader>m-  |MarkologyClearMark|
+            Clears the mark at the current line.
+            (Mapping can be overridden using: <Plug>MarkologyClearMark)
+
+<Leader>m_  |MarkologyClearAll|
+            Clears all marks in the current buffer.
+            (Mapping can be overridden using: <Plug>MarkologyClearAll)
+
+<Leader>m]  |MarkologyNextLocalMarkPos|
+            Jumps to the next local mark.
+            (Mapping can be overridden using: <Plug>MarkologyNextLocalMarkPos)
+
+<Leader>m[  |MarkologyPrevLocalMarkPos|
+            Jumps to the previous local mark.
+            (Mapping can be overridden using: <Plug>MarkologyPrevLocalMarkPos)
+
+<Leader>m}  |MarkologyNextLocalMarkByAlpha|
+            Jumps to the next local mark in lexicographical order.
+            (Mapping can be overridden using: <Plug>MarkologyNextLocalMarkByAlpha)
+
+<Leader>m{  |MarkologyPrevLocalMarkByAlpha|
+            Jumps to the previous local mark in lexicographical order.
+            (Mapping can be overridden using: <Plug>MarkologyPrevLocalMarkByAlpha)
+
+<Leader>ml  |MarkologyLocalList|
+            List marks in |location-list| for the current window.
+            (Mapping can be overridden using: <Plug>MarkologyLocationList)
+
+<Leader>mq  |MarkologyQuickFix|
+            List marks in |quickfix| window.
+            (Mapping can be overridden using: <Plug>MarkologyQuickFix)
+
+(see |mapleader| for how to setup the mapleader variable.)
+
+These default mappings can be overridden by default in your '~/.vimrc', by, for
+example: >
+
+    nmap <silent> ;! <Plug>MarkologyEnableToggle
+    nmap <silent> ;m <Plug>MarkologyEnable
+    nmap <silent> ;+ <Plug>MarkologyPlaceMark
+    nmap <silent> ;= <Plug>MarkologyPlaceMarkToggle
+    nmap <silent> ;- <Plug>MarkologyClearMark
+    nmap <silent> ;_ <Plug>MarkologyClearAll
+    nmap <silent> ;] <Plug>MarkologyNextLocalMarkPos
+    nmap <silent> ;[ <Plug>MarkologyPrevLocalMarkPos
+    nmap <silent> ;} <Plug>MarkologyNextLocalMarkByAlpha
+    nmap <silent> ;{ <Plug>MarkologyPrevLocalMarkByAlpha
+    nmap <silent> ;l <Plug>MarkologyLocationList
+    nmap <silent> ;q <Plug>MarkologyQuickFix
+
+===============================================================================
+Configuration                                      *markology-configuration*
+
+Markology can be configured to suit your needs.
+The following options can be added to your |vimrc| to change how Markology
+behaves:
+
+                                                           *'markology_enable'*
+'markology_enable'      boolean (default: 1)
+                        global
+   This option enables or disables Markology on startup. Normally Markology
+   will be enabled when Vim starts, setting this to 0 will disable Markology
+   by default.
+   Markology can be turned back on using the |MarkologyToggle| command.
+
+                                                          *'markology_include'*
+'markology_include'     string  (default:
+"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]{}()\"")
+                        global or local to buffer
+   This option specifies which marks will be shown and in which order if
+   placed on the same line. Marks earlier in the list take precedence over
+   marks later in the list.
+   This option can also be specified as a buffer option which will override
+   the global version.
+
+   NOTE: When including the " mark, it must be escaped with a \.
+
+   For example to only include marks 'abcdefzxABHJio', in that order:
+>
+     let g:markology_include="abcdefzxABJio"
+<
+   To override this for a particular buffer with 'ABCDhj.'^':
+>
+     let b:markology_include="abcdefzxABJio"
+<
+                                                      *'markology_ignore_type'*
+'markology_ignore_type' string  (default: "hq")
+                        global
+   This option defines which types of buffers should be ignored.
+   Each type is represented by a letter. This option is not case-sensitive.
+   Valid buffer types are:
+   - h : Help
+   - m : Non-modifiable
+   - p : Preview
+   - q : Quickfix
+   - r : Readonly
+
+   For example to ignore help, preview and readonly files:
+>
+     let g:markology_ignore_type="hpr"
+<
+                                                      *'markology_ignore_name'*
+'markology_textlower'   string  (default: ">" )
+                        global
+   This option defines how the marks a-z will be displayed.
+   A maximum of two characters can be defined.
+   To include the mark in the text use a tab(\t) character. A single
+   character will display as the mark with the character suffixed (same as
+   "\t<character>"). Specifying two characters will simply display those two
+   characters.
+
+   Some examples:
+     To display the mark with a > suffixed: >
+       let g:markology_textlower="\t>"
+<         or >
+       let g:markology_textlower=">"
+<
+     To display the mark with a ( prefixed: >
+       let g:markology_textlower="(\t"
+<
+     To display two > characters: >
+       let g:markology_textlower=">>"
+                                                        *'markology_textupper'*
+'markology_textupper'   string  (default: ">")
+                        global
+   This option defines how the marks A-Z will be displayed. It behaves the same
+   as the |'markology_textlower'| option.
+
+                                                        *'markology_textother'*
+'markology_textother'   string  (default: ">")
+                        global
+   This option defines how all other marks will be displayed. It behaves the
+   same as the |'markology_textlower'| option.
+
+'markology_hlline_lower' boolean (default: 0)        *'markology_hlline_lower'*
+                        global
+   This option defines whether the entire line a lowercase mark is on will
+   be highlighted.
+
+'markology_hlline_upper' boolean (default: 0)        *'markology_hlline_upper'*
+                        global
+   This option defines whether the entire line an uppercase mark is on will
+   be highlighted.
+
+'markology_hlline_other' boolean (default: 0)        *'markology_hlline_other'*
+                        global
+   This option defines whether the entire line other marks are on will be
+   highlighted.
+
+'markology_local_marks_wrap_search' boolean (default: 1) *'markology_local_marks_wrap_search'*
+                        global
+    This option defines whether navigation wraps around the buffer when
+    cycling through previous and next local marks.
+    Possible values:
+            -1 - use 'wrapscan' option value
+             0 - do not wrap
+             1 - always wrap (default)
+
+===============================================================================
+Highlighting                                        *markology-highlighting*
+
+Five highlighting groups are used by Markology to define the colours used to
+highlight each of the marks.
+
+  - MarkologyHLl  : This group is used to highlight all the lowercase marks.
+  - MarkologyHLu  : This group is used to highlight all the uppercase marks.
+  - MarkologyHLo  : This group is used to highlight all other marks.
+  - MarkologyHLm  : This group is used when multiple marks are on the same line.
+  - MarkologyLine : This group is used to highlight lines if line-highlighting
+                  is selected.
+
+You can define your own highlighting by overriding these groups in your |vimrc|.
+For example: >
+
+  highlight MarkologyHLl guifg=red guibg=green
+<
+Will set all lowercase marks to be red on green when running in GVim.
+See |highlight| for more information.
+
