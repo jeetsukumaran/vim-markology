@@ -36,9 +36,9 @@ set cpo&vim
 
 " Options: Set up some nice defaults
 if !exists('g:markology_enable'      ) | let g:markology_enable       = 1    | endif
-if !exists('g:markology_textlower'   ) | let g:markology_textlower    = ">"  | endif
-if !exists('g:markology_textupper'   ) | let g:markology_textupper    = ">"  | endif
-if !exists('g:markology_textother'   ) | let g:markology_textother    = ">"  | endif
+if !exists('g:markology_textlower'   ) | let g:markology_textlower    = "'\t"  | endif
+if !exists('g:markology_textupper'   ) | let g:markology_textupper    = "'\t"  | endif
+if !exists('g:markology_textother'   ) | let g:markology_textother    = "'\t"  | endif
 if !exists('g:markology_ignore_type' ) | let g:markology_ignore_type  = "hq" | endif
 if !exists('g:markology_ignore_name' ) | let g:markology_ignore_name  = ""   | endif
 if !exists('g:markology_hlline_lower') | let g:markology_hlline_lower = "0"  | endif
@@ -104,11 +104,11 @@ if g:markology_enable == 1
 endif
 
 " Highlighting: Setup some nice colours to show the mark positions.
-hi default MarkologyHLl ctermfg=darkblue ctermbg=blue cterm=bold guifg=green guibg=black gui=bold
-hi default MarkologyHLLine cterm=underline gui=undercurl guisp=green
-hi default MarkologyHLu ctermfg=darkblue ctermbg=blue cterm=bold guifg=green guibg=black gui=bold
-hi default MarkologyHLo ctermfg=darkblue ctermbg=blue cterm=bold guifg=green guibg=black gui=bold
-hi default MarkologyHLm ctermfg=darkblue ctermbg=blue cterm=bold guifg=green guibg=black gui=bold
+hi default MarkologyHLl ctermfg=green ctermbg=black cterm=bold guifg=green guibg=black
+hi default MarkologyHLLine cterm=underline gui=undercurl guisp=#007777
+hi default MarkologyHLu ctermfg=green ctermbg=black cterm=bold guifg=green guibg=black
+hi default MarkologyHLo ctermfg=green ctermbg=black cterm=bold guifg=green guibg=black
+hi default MarkologyHLm ctermfg=green ctermbg=black cterm=bold guifg=green guibg=black
 
 " Function: GetMarkLine()
 " Authors: Easwy Yang

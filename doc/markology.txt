@@ -244,7 +244,7 @@ behaves:
      let g:markology_ignore_type="hpr"
 <
                                                       *'markology_ignore_name'*
-'markology_textlower'   string  (default: ">" )
+'markology_textlower'   string  (default: "'\t" )
                         global
    This option defines how the marks a-z will be displayed.
    A maximum of two characters can be defined.
@@ -265,13 +265,13 @@ behaves:
      To display two > characters: >
        let g:markology_textlower=">>"
                                                         *'markology_textupper'*
-'markology_textupper'   string  (default: ">")
+'markology_textupper'   string  (default: "'\t")
                         global
    This option defines how the marks A-Z will be displayed. It behaves the same
    as the |'markology_textlower'| option.
 
                                                         *'markology_textother'*
-'markology_textother'   string  (default: ">")
+'markology_textother'   string  (default: "'\t")
                         global
    This option defines how all other marks will be displayed. It behaves the
    same as the |'markology_textlower'| option.
