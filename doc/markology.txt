@@ -129,11 +129,11 @@ All the above commands are available to assigned to mappings using the
 |<Plug>|system. If no key mappings are set, the following mappings are setup
 by default:
 
-<Leader>mm  |MarkologyEnable|
+<Leader>m1  |MarkologyEnable|
             Switches Markology on.
             (Mapping can be overridden using: <Plug>MarkologyEnable)
 
-<Leader>mM  |MarkologyDisable|
+<Leader>m0  |MarkologyDisable|
             Switches Markology off.
             (Mapping can be overridden using: <Plug>MarkologyDisable)
 
@@ -141,7 +141,7 @@ by default:
             Toggles Markology on and off.
             (Mapping can be overridden using: <Plug>MarkologyToggle)
 
-<Leader>m=  |MarkologyPlaceMarkToggle|
+<Leader>m,  |MarkologyPlaceMarkToggle|
             Toggles the mark at the current line.
             (Mapping can be overridden using: <Plug>MarkologyPlaceMarkToggle)
 
@@ -173,32 +173,35 @@ by default:
             Jumps to the previous local mark in lexicographical order.
             (Mapping can be overridden using: <Plug>MarkologyPrevLocalMarkByAlpha)
 
-<Leader>ml  |MarkologyLocalList|
+<Leader>m?  |MarkologyLocalList|
             List marks in |location-list| for the current window.
             (Mapping can be overridden using: <Plug>MarkologyLocationList)
 
-<Leader>mq  |MarkologyQuickFix|
+<Leader>m^  |MarkologyQuickFix|
             List marks in |quickfix| window.
             (Mapping can be overridden using: <Plug>MarkologyQuickFix)
 
 (see |mapleader| for how to setup the mapleader variable.)
 
+The default mappings are all prefixed by '<Leader>m' followed by a
+non-alphabetic character.
+
 These default mappings can be overridden by default in your '~/.vimrc', by, for
 example: >
 
-    nmap <silent> ;m <Plug>MarkologyEnable
-    nmap <silent> ;M <Plug>MarkologyDisable
+    nmap <silent> ;0 <Plug>MarkologyEnable
+    nmap <silent> ;1 <Plug>MarkologyDisable
     nmap <silent> ;! <Plug>MarkologyToggle
+    nmap <silent> ;, <Plug>MarkologyPlaceMarkToggle
     nmap <silent> ;+ <Plug>MarkologyPlaceMark
-    nmap <silent> ;= <Plug>MarkologyPlaceMarkToggle
     nmap <silent> ;- <Plug>MarkologyClearMark
     nmap <silent> ;_ <Plug>MarkologyClearAll
     nmap <silent> ;] <Plug>MarkologyNextLocalMarkPos
     nmap <silent> ;[ <Plug>MarkologyPrevLocalMarkPos
     nmap <silent> ;} <Plug>MarkologyNextLocalMarkByAlpha
     nmap <silent> ;{ <Plug>MarkologyPrevLocalMarkByAlpha
-    nmap <silent> ;l <Plug>MarkologyLocationList
-    nmap <silent> ;q <Plug>MarkologyQuickFix
+    nmap <silent> ;? <Plug>MarkologyLocationList
+    nmap <silent> ;~ <Plug>MarkologyQuickFix
 <
 
 ===============================================================================

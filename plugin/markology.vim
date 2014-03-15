@@ -70,8 +70,8 @@ com! -nargs=0 MarkologyQuickFix                         :call <sid>MarksQF()
 nnoremap <silent> <Plug>MarkologyEnable                 :MarkologyEnable<CR>
 nnoremap <silent> <Plug>MarkologyDisable                :MarkologyDisable<CR>
 nnoremap <silent> <Plug>MarkologyToggle                 :MarkologyToggle<CR>
-nnoremap <silent> <Plug>MarkologyPlaceMark              :MarkologyPlaceMark<CR>
 nnoremap <silent> <Plug>MarkologyPlaceMarkToggle        :MarkologyPlaceMarkToggle<CR>
+nnoremap <silent> <Plug>MarkologyPlaceMark              :MarkologyPlaceMark<CR>
 nnoremap <silent> <Plug>MarkologyClearMark              :MarkologyClearMark<CR>
 nnoremap <silent> <Plug>MarkologyClearAll               :MarkologyClearAll<CR>
 nnoremap <silent> <Plug>MarkologyNextLocalMarkPos       :MarkologyNextLocalMarkPos<CR>
@@ -82,19 +82,19 @@ nnoremap <silent> <Plug>MarkologyLocationList           :MarkologyLocationList<C
 nnoremap <silent> <Plug>MarkologyQuickFix               :MarkologyQuickFix<CR>
 
 " Set Default Mappings (NOTE: Leave the '|'s immediately following the '<cr>' so the mapping does not contain any trailing spaces!)
-if !hasmapto( '<Plug>MarkologyEnable' )               |  map <silent> <leader>mm :MarkologyEnable<cr>               |  endif
-if !hasmapto( '<Plug>MarkologyDisable' )              |  map <silent> <leader>mM :MarkologyDisable<cr>              |  endif
+if !hasmapto( '<Plug>MarkologyEnable' )               |  map <silent> <leader>m1 :MarkologyEnable<cr>               |  endif
+if !hasmapto( '<Plug>MarkologyDisable' )              |  map <silent> <leader>m0 :MarkologyDisable<cr>              |  endif
 if !hasmapto( '<Plug>MarkologyToggle' )               |  map <silent> <leader>m! :MarkologyToggle<cr>               |  endif
+if !hasmapto( '<Plug>MarkologyPlaceMarkToggle' )      |  map <silent> <leader>m, :MarkologyPlaceMarkToggle<cr>      |  endif
 if !hasmapto( '<Plug>MarkologyPlaceMark' )            |  map <silent> <leader>m+ :MarkologyPlaceMark<cr>            |  endif
-if !hasmapto( '<Plug>MarkologyPlaceMarkToggle' )      |  map <silent> <leader>m= :MarkologyPlaceMarkToggle<cr>      |  endif
 if !hasmapto( '<Plug>MarkologyClearMark' )            |  map <silent> <leader>m- :MarkologyClearMark<cr>            |  endif
 if !hasmapto( '<Plug>MarkologyClearAll' )             |  map <silent> <leader>m_ :MarkologyClearAll<cr>             |  endif
 if !hasmapto( '<Plug>MarkologyNextLocalMarkPos' )     |  map <silent> <leader>m] :MarkologyNextLocalMarkPos<cr>     |  endif
 if !hasmapto( '<Plug>MarkologyPrevLocalMarkPos' )     |  map <silent> <leader>m[ :MarkologyPrevLocalMarkPos<cr>     |  endif
 if !hasmapto( '<Plug>MarkologyNextLocalMarkByAlpha' ) |  map <silent> <leader>m{ :MarkologyNextLocalMarkByAlpha<cr> |  endif
 if !hasmapto( '<Plug>MarkologyPrevLocalMarkByAlpha' ) |  map <silent> <leader>m} :MarkologyPrevLocalMarkByAlpha<cr> |  endif
-if !hasmapto( '<Plug>MarkologyLocationList' )         |  map <silent> <leader>ml :MarkologyLocationList<cr>         |  endif
-if !hasmapto( '<Plug>MarkologyQuickFix' )             |  map <silent> <leader>mq :MarkologyQuickFix<cr>             |  endif
+if !hasmapto( '<Plug>MarkologyLocationList' )         |  map <silent> <leader>m? :MarkologyLocationList<cr>         |  endif
+if !hasmapto( '<Plug>MarkologyQuickFix' )             |  map <silent> <leader>m^ :MarkologyQuickFix<cr>             |  endif
 noremap <script> \sm m
 noremap <silent> m :exe 'norm \sm'.nr2char(getchar())<bar>call <sid>Markology()<CR>
 
