@@ -15,7 +15,8 @@ Contents                                    *markology* *markology-contents*
 ===============================================================================
 Introduction                                      *markology-introduction*
 
-Markology is a Frankenstein-ian beast that cobbles together:
+Markology is a Frankenstein-ian beast that seamlessly amalgamates and
+streamlines (the best) parts of:
 
     1.  ShowMarks
 

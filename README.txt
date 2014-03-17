@@ -6,11 +6,11 @@ this plugin requires that Vim be compiled with the 'sign' option.
 Markology displays marks associated with the current line in the sign column or
 gutter of the window displaying the buffer (with the entire line highlighted
 in a different color, if so desired).  You can easily add ('\m+'), delete
-('\m-'), or toggle ('\m=') marks associated with the current line.  You can
+('\m-'), or toggle ('\m,') marks associated with the current line.  You can
 easily jump through the sequence of all the local marks in the buffer, either
 spatially ('\m]' and '\m[') or lexicographically ('\m}' and '\m{').  You can
-also easily display all current marks in the location list window ('\ml') or
-the quickfix window ('\mq').
+also easily display all current marks in the location list window ('\m?') or
+the quickfix window ('\m~').
 
 Detailed usage description given in the help file, which can be viewed on-line
 here:
@@ -21,7 +21,8 @@ Source code repository can be found here:
 
     http://github.com/jeetsukumaran/vim-markology
 
-Markology is a Frankenstein-ian beast that cobbles together:
+Markology is a Frankenstein-ian beast that seamlessly amalgamates and
+streamlines (the best) parts of:
 
     1.  ShowMarks
 
