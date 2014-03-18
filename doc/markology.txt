@@ -313,6 +313,11 @@ behaves:
              0 - do not wrap
              1 - always wrap (default)
 
+'markology_disable_mappings' boolean (default: 0) *'markology_disable_mappings'*
+                        global
+    This option defines whether mappings should be created by markology. If it
+    is set to 1, key mappings will not be created by markology.
+
 ===============================================================================
 Highlighting                                        *markology-highlighting*
 
