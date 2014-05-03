@@ -369,6 +369,12 @@ fun! s:Markology()
         elseif ln > 1 || c !~ '[a-zA-Z]'
             " Have we already placed a mark here in this call to Markology?
             if exists('mark_at'.ln)
+                " remove old sign if there is one
+                if exists('b:placed_'.nm)
+                    exe 'sign unplace '.id.' buffer='.winbufnr(0)
+                    unlet b:placed_{nm}
+                endif
+
                 " Already placed a mark, set the highlight to multiple
                 if c =~# '[a-zA-Z]' && b:MarkologyLink{mark_at{ln}} != 'MarkologyHLm'
                     let b:MarkologyLink{mark_at{ln}} = 'MarkologyHLm'
