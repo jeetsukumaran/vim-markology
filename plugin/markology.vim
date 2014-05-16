@@ -65,6 +65,8 @@ com! -nargs=0 MarkologyNextLocalMarkByAlpha             :call <sid>NextByAlpha()
 com! -nargs=0 MarkologyPrevLocalMarkByAlpha             :call <sid>PrevByAlpha()
 com! -nargs=0 MarkologyLocationList                     :call <sid>MarksLoc()
 com! -nargs=0 MarkologyQuickFix                         :call <sid>MarksQF()
+com! -nargs=0 MarkologyLineHighlightToggle              :call <sid>MarkologyLineHighlightToggle()
+
 
 " Mappings
 nnoremap <silent> <Plug>MarkologyEnable                 :MarkologyEnable<CR>
@@ -80,6 +82,7 @@ nnoremap <silent> <Plug>MarkologyNextLocalMarkByAlpha   :MarkologyNextLocalMarkB
 nnoremap <silent> <Plug>MarkologyPrevLocalMarkByAlpha   :MarkologyPrevLocalMarkByAlpha<CR>
 nnoremap <silent> <Plug>MarkologyLocationList           :MarkologyLocationList<CR>
 nnoremap <silent> <Plug>MarkologyQuickFix               :MarkologyQuickFix<CR>
+nnoremap <silent> <Plug>MarkologyLineHighlightToggle    :MarkologyLineHighlightToggle<CR>
 
 " Set Default Mappings (NOTE: Leave the '|'s immediately following the '<cr>' so the mapping does not contain any trailing spaces!)
 if !exists("g:markology_disable_mappings") || !g:markology_disable_mappings
@@ -96,6 +99,7 @@ if !exists("g:markology_disable_mappings") || !g:markology_disable_mappings
     if !hasmapto( '<Plug>MarkologyPrevLocalMarkByAlpha' ) |  noremap <silent> <leader>m} :MarkologyPrevLocalMarkByAlpha<cr> |  endif
     if !hasmapto( '<Plug>MarkologyLocationList' )         |  noremap <silent> <leader>m? :MarkologyLocationList<cr>         |  endif
     if !hasmapto( '<Plug>MarkologyQuickFix' )             |  noremap <silent> <leader>m^ :MarkologyQuickFix<cr>             |  endif
+    if !hasmapto( '<Plug>MarkologyLineHighlightToggle' )  |  noremap <silent> <leader>m* :MarkologyLineHighlightToggle<cr>  |  endif
     noremap <script> \sm m
     noremap <silent> m :exe 'norm \sm'.nr2char(getchar())<bar>call <sid>Markology()<CR>
 endif
@@ -237,9 +241,11 @@ fun! s:MarkologySetup()
                 endif
             endif
             let s:MarkologyDLink{nm} = 'MarkologyHLl'
-            if g:markology_hlline_lower == 1
+            if g:markology_hlline_lower
                 " let lhltext = 'linehl='.s:MarkologyDLink{nm}.nm
                 let lhltext = 'linehl=MarkologyHLLine'
+            else
+                let lhltext = 'linehl=Normal'
             endif
         elseif c =~# '[A-Z]'
             if strlen(g:markology_textupper) == 1
@@ -256,7 +262,7 @@ fun! s:MarkologySetup()
                 endif
             endif
             let s:MarkologyDLink{nm} = 'MarkologyHLu'
-            if g:markology_hlline_upper == 1
+            if g:markology_hlline_upper
                 " let lhltext = 'linehl='.s:MarkologyDLink{nm}.nm
                 let lhltext = 'linehl=MarkologyHLLine'
             endif
@@ -775,6 +781,11 @@ function! s:MarkologyPlaceMarkToggle()
   else
       call <sid>MarkologyPlaceMark()
   endif
+endfunction
+
+function! s:MarkologyLineHighlightToggle()
+    let g:markology_hlline_lower = !g:markology_hlline_lower
+    call s:MarkologySetup()
 endfunction
 
 " restore options
