@@ -86,20 +86,20 @@ nnoremap <silent> <Plug>MarkologyLineHighlightToggle    :MarkologyLineHighlightT
 
 " Set Default Mappings (NOTE: Leave the '|'s immediately following the '<cr>' so the mapping does not contain any trailing spaces!)
 if !exists("g:markology_disable_mappings") || !g:markology_disable_mappings
-    if !hasmapto( '<Plug>MarkologyEnable' )               |  noremap <silent> <Leader> m1 :MarkologyEnable<cr>|  endif
-    if !hasmapto( '<Plug>MarkologyDisable' )              |  noremap <silent> <Leader> m0 :MarkologyDisable<cr>|  endif
-    if !hasmapto( '<Plug>MarkologyToggle' )               |  noremap <silent> <Leader> m! :MarkologyToggle<cr>|  endif
-    if !hasmapto( '<Plug>MarkologyPlaceMarkToggle' )      |  noremap <silent> <Leader> m, :MarkologyPlaceMarkToggle<cr>|  endif
-    if !hasmapto( '<Plug>MarkologyPlaceMark' )            |  noremap <silent> <Leader> m+ :MarkologyPlaceMark<cr>|  endif
-    if !hasmapto( '<Plug>MarkologyClearMark' )            |  noremap <silent> <Leader> m- :MarkologyClearMark<cr>|  endif
-    if !hasmapto( '<Plug>MarkologyClearAll' )             |  noremap <silent> <Leader> m_ :MarkologyClearAll<cr>|  endif
-    if !hasmapto( '<Plug>MarkologyNextLocalMarkPos' )     |  noremap <silent> <Leader> m] :MarkologyNextLocalMarkPos<cr>|  endif
-    if !hasmapto( '<Plug>MarkologyPrevLocalMarkPos' )     |  noremap <silent> <Leader> m[ :MarkologyPrevLocalMarkPos<cr>|  endif
-    if !hasmapto( '<Plug>MarkologyNextLocalMarkByAlpha' ) |  noremap <silent> <Leader> m{ :MarkologyNextLocalMarkByAlpha<cr>|  endif
-    if !hasmapto( '<Plug>MarkologyPrevLocalMarkByAlpha' ) |  noremap <silent> <Leader> m} :MarkologyPrevLocalMarkByAlpha<cr>|  endif
-    if !hasmapto( '<Plug>MarkologyLocationList' )         |  noremap <silent> <Leader> m? :MarkologyLocationList<cr>|  endif
-    if !hasmapto( '<Plug>MarkologyQuickFix' )             |  noremap <silent> <Leader> m^ :MarkologyQuickFix<cr>|  endif
-    if !hasmapto( '<Plug>MarkologyLineHighlightToggle' )  |  noremap <silent> <Leader> m* :MarkologyLineHighlightToggle<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyEnable' )               |  noremap <silent> m1 :MarkologyEnable<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyDisable' )              |  noremap <silent> m0 :MarkologyDisable<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyToggle' )               |  noremap <silent> m! :MarkologyToggle<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyPlaceMarkToggle' )      |  noremap <silent> m, :MarkologyPlaceMarkToggle<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyPlaceMark' )            |  noremap <silent> m+ :MarkologyPlaceMark<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyClearMark' )            |  noremap <silent> m- :MarkologyClearMark<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyClearAll' )             |  noremap <silent> m_ :MarkologyClearAll<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyNextLocalMarkPos' )     |  noremap <silent> m] :MarkologyNextLocalMarkPos<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyPrevLocalMarkPos' )     |  noremap <silent> m[ :MarkologyPrevLocalMarkPos<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyNextLocalMarkByAlpha' ) |  noremap <silent> m{ :MarkologyNextLocalMarkByAlpha<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyPrevLocalMarkByAlpha' ) |  noremap <silent> m} :MarkologyPrevLocalMarkByAlpha<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyLocationList' )         |  noremap <silent> m? :MarkologyLocationList<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyQuickFix' )             |  noremap <silent> m^ :MarkologyQuickFix<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyLineHighlightToggle' )  |  noremap <silent> m* :MarkologyLineHighlightToggle<cr>|  endif
     noremap <script> \sm m
     noremap <silent> m :exe 'norm \sm'.nr2char(getchar())<bar>call <sid>Markology()<CR>
 endif

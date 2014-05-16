@@ -130,62 +130,61 @@ All the above commands are available to assigned to mappings using the
 |<Plug>|system. If no key mappings are set, the following mappings are setup
 by default:
 
-<Leader>m1  |MarkologyEnable|
-            Switches Markology on.
-            (Mapping can be overridden using: <Plug>MarkologyEnable)
+m1  |MarkologyEnable|
+    Switches Markology on.
+    (Mapping can be overridden using: <Plug>MarkologyEnable)
 
-<Leader>m0  |MarkologyDisable|
-            Switches Markology off.
-            (Mapping can be overridden using: <Plug>MarkologyDisable)
+m0  |MarkologyDisable|
+    Switches Markology off.
+    (Mapping can be overridden using: <Plug>MarkologyDisable)
 
-<Leader>m!  |MarkologyToggle|
-            Toggles Markology on and off.
-            (Mapping can be overridden using: <Plug>MarkologyToggle)
+m!  |MarkologyToggle|
+    Toggles Markology on and off.
+    (Mapping can be overridden using: <Plug>MarkologyToggle)
 
-<Leader>m,  |MarkologyPlaceMarkToggle|
-            Toggles the mark at the current line.
-            (Mapping can be overridden using: <Plug>MarkologyPlaceMarkToggle)
+m,  |MarkologyPlaceMarkToggle|
+    Toggles the mark at the current line.
+    (Mapping can be overridden using: <Plug>MarkologyPlaceMarkToggle)
 
-<Leader>m+  |MarkologyPlaceMark|
-            Places the next available mark on the current line.
-            (Mapping can be overridden using: <Plug>MarkologyPlaceMark)
+m+  |MarkologyPlaceMark|
+    Places the next available mark on the current line.
+    (Mapping can be overridden using: <Plug>MarkologyPlaceMark)
 
-<Leader>m-  |MarkologyClearMark|
-            Clears the mark at the current line.
-            (Mapping can be overridden using: <Plug>MarkologyClearMark)
+m-  |MarkologyClearMark|
+    Clears the mark at the current line.
+    (Mapping can be overridden using: <Plug>MarkologyClearMark)
 
-<Leader>m_  |MarkologyClearAll|
-            Clears all marks in the current buffer.
-            (Mapping can be overridden using: <Plug>MarkologyClearAll)
+m_  |MarkologyClearAll|
+    Clears all marks in the current buffer.
+    (Mapping can be overridden using: <Plug>MarkologyClearAll)
 
-<Leader>m]  |MarkologyNextLocalMarkPos|
-            Jumps to the next local mark.
-            (Mapping can be overridden using: <Plug>MarkologyNextLocalMarkPos)
+m]  |MarkologyNextLocalMarkPos|
+    Jumps to the next local mark.
+    (Mapping can be overridden using: <Plug>MarkologyNextLocalMarkPos)
 
-<Leader>m[  |MarkologyPrevLocalMarkPos|
-            Jumps to the previous local mark.
-            (Mapping can be overridden using: <Plug>MarkologyPrevLocalMarkPos)
+m[  |MarkologyPrevLocalMarkPos|
+    Jumps to the previous local mark.
+    (Mapping can be overridden using: <Plug>MarkologyPrevLocalMarkPos)
 
-<Leader>m}  |MarkologyNextLocalMarkByAlpha|
-            Jumps to the next local mark in lexicographical order.
-            (Mapping can be overridden using: <Plug>MarkologyNextLocalMarkByAlpha)
+m}  |MarkologyNextLocalMarkByAlpha|
+    Jumps to the next local mark in lexicographical order.
+    (Mapping can be overridden using: <Plug>MarkologyNextLocalMarkByAlpha)
 
-<Leader>m{  |MarkologyPrevLocalMarkByAlpha|
-            Jumps to the previous local mark in lexicographical order.
-            (Mapping can be overridden using: <Plug>MarkologyPrevLocalMarkByAlpha)
+m{  |MarkologyPrevLocalMarkByAlpha|
+    Jumps to the previous local mark in lexicographical order.
+    (Mapping can be overridden using: <Plug>MarkologyPrevLocalMarkByAlpha)
 
-<Leader>m?  |MarkologyLocalList|
-            List marks in |location-list| for the current window.
-            (Mapping can be overridden using: <Plug>MarkologyLocationList)
+m?  |MarkologyLocalList|
+    List marks in |location-list| for the current window.
+    (Mapping can be overridden using: <Plug>MarkologyLocationList)
 
-<Leader>m^  |MarkologyQuickFix|
-            List marks in |quickfix| window.
-            (Mapping can be overridden using: <Plug>MarkologyQuickFix)
+m^  |MarkologyQuickFix|
+    List marks in |quickfix| window.
+    (Mapping can be overridden using: <Plug>MarkologyQuickFix)
 
-(see |mapleader| for how to setup the mapleader variable.)
-
-The default mappings are all prefixed by '<Leader>m' followed by a
-non-alphabetic character.
+m*  |MarkologyLineHighlightToggle|
+    Toggle line highlighting of (lower-case) marks.
+    (Mapping can be overridden using: <Plug>MarkologyLineHighlightToggle)
 
 These default mappings can be overridden by default in your '~/.vimrc', by, for
 example: >
