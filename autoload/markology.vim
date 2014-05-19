@@ -441,7 +441,7 @@ fun! markology#Markology()
 
         if ln == 0 && (exists('b:placed_'.nm) && b:placed_{nm} != ln)
             exe 'sign unplace '.id.' buffer='.winbufnr(0)
-        elseif ln > 1 || c !~ '[a-zA-Z]'
+        elseif ln >= 1 || c !~ '[a-zA-Z]'
             " Have we already placed a mark here in this call to Markology?
             if exists('mark_at'.ln)
                 " remove old sign if there is one
