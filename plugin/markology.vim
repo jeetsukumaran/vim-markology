@@ -142,14 +142,10 @@ endif
 " noremap <silent> m :exe 'norm \sm'.nr2char(getchar())<bar>call markology#Markology()<CR>
 " noremap <script> \sm m
 function! s:_m_key_override()
-    if &ft == "nerdtree"
-        execute "normal! m"
-    else
-        execute 'normal! m'.nr2char(getchar())
-        call markology#Markology()
-    endif
+    execute 'normal! m'.nr2char(getchar())
+    call markology#Markology()
 endfunction
-noremap <silent> m :call <SID>_m_key_override()<CR>
+nnoremap <silent> m :call <SID>_m_key_override()<CR>
 " }}}1
 
 " Restore State {{{1
