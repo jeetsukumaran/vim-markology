@@ -17,23 +17,29 @@
 ""  for more details.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Check if we should continue loading
+" Reload Guard {{{1
 if exists( "loaded_markology" )
     finish
 endif
 let loaded_markology = 1
+" }}}1
 
-" avoid line continuation issues (see ':help user_41.txt')
-let s:save_cpo = &cpo
-set cpo&vim
-
+" We need signs to show signs! {{{1
 if has( "signs" ) == 0
     echohl ErrorMsg
     echo "Markology requires Vim to have +signs support."
     echohl None
     finish
 endif
+" }}}1
 
+" Compatibility Guard {{{1
+" avoid line continuation issues (see ':help user_41.txt')
+let s:save_cpo = &cpo
+set cpo&vim
+" }}}1
+
+" Global Options and Deefaults {{{1
 " Options: Set up some nice defaults
 if !exists('g:markology_enable'      ) | let g:markology_enable       = 1    | endif
 if !exists('g:markology_textlower'   ) | let g:markology_textlower    = "'\t"  | endif
@@ -45,8 +51,9 @@ if !exists('g:markology_hlline_lower') | let g:markology_hlline_lower = "0"  | e
 if !exists('g:markology_hlline_upper') | let g:markology_hlline_upper = "0"  | endif
 if !exists('g:markology_hlline_other') | let g:markology_hlline_other = "0"  | endif
 if !exists('g:markology_set_location_list_convenience_maps') | let g:markology_set_location_list_convenience_maps = 1  | endif
+" }}}1
 
-" Commands
+" Commands {{{1
 com! -nargs=0 MarkologyEnable                           :call markology#MarkologyEnable()
 com! -nargs=0 MarkologyDisable                          :call markology#MarkologyDisable()
 com! -nargs=0 MarkologyToggle                           :call markology#MarkologyToggle()
@@ -61,9 +68,9 @@ com! -nargs=0 MarkologyPrevLocalMarkByAlpha             :call markology#Markolog
 com! -nargs=0 MarkologyLocationList                     :call markology#MarkologyMarksLocationList()
 com! -nargs=0 MarkologyQuickFix                         :call markology#MarkologyMarksQuickFix()
 com! -nargs=0 MarkologyLineHighlightToggle              :call markology#MarkologyLineHighlightToggle()
+" }}}1
 
-
-" Mappings
+" Plugs {{{1
 nnoremap <silent> <Plug>MarkologyEnable                 :MarkologyEnable<CR>
 nnoremap <silent> <Plug>MarkologyDisable                :MarkologyDisable<CR>
 nnoremap <silent> <Plug>MarkologyToggle                 :MarkologyToggle<CR>
@@ -78,7 +85,9 @@ nnoremap <silent> <Plug>MarkologyPrevLocalMarkByAlpha   :MarkologyPrevLocalMarkB
 nnoremap <silent> <Plug>MarkologyLocationList           :MarkologyLocationList<CR>
 nnoremap <silent> <Plug>MarkologyQuickFix               :MarkologyQuickFix<CR>
 nnoremap <silent> <Plug>MarkologyLineHighlightToggle    :MarkologyLineHighlightToggle<CR>
+" }}}1
 
+" Default Mappings {{{1
 " Set Default Mappings (NOTE: Leave the '|'s immediately following the '<cr>' so the mapping does not contain any trailing spaces!)
 if !exists("g:markology_disable_mappings") || !g:markology_disable_mappings
     if !exists("g:markology_prefix_leader_on_default_mappings") || !g:markology_prefix_leader_on_default_mappings
@@ -117,8 +126,33 @@ if !exists("g:markology_disable_mappings") || !g:markology_disable_mappings
         if !hasmapto( '<Plug>MarkologyLineHighlightToggle' )  |  noremap <silent> <Leader>m* :MarkologyLineHighlightToggle<cr>|  endif
     endif
 endif
-noremap <script> \sm m
-noremap <silent> m :exe 'norm \sm'.nr2char(getchar())<bar>call markology#Markology()<CR>
+" }}}1
 
+" Autocommands {{{1
+if g:markology_enable == 1
+    aug Markology
+        au!
+        autocmd CursorHold * call markology#Markology()
+        autocmd BufNewFile,Bufread * call markology#Markology()
+    aug END
+endif
+" }}}1
+
+" Override `m` {{{1
+" noremap <silent> m :exe 'norm \sm'.nr2char(getchar())<bar>call markology#Markology()<CR>
+" noremap <script> \sm m
+function! s:_m_key_override()
+    if &ft == "nerdtree"
+        execute "normal! m"
+    else
+        execute 'normal! m'.nr2char(getchar())
+        call markology#Markology()
+    endif
+endfunction
+noremap <silent> m :call <SID>_m_key_override()<CR>
+" }}}1
+
+" Restore State {{{1
 " restore options
 let &cpo = s:save_cpo
+" }}}1

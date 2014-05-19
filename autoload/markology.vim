@@ -716,17 +716,6 @@ endfunction
 
 " }}}1
 
-" Autocommands {{{1
-" AutoCommands: Only if Markology is enabled
-if g:markology_enable == 1
-    aug Markology
-        au!
-        autocmd CursorHold * call markology#Markology()
-        autocmd BufNewFile,Bufread * call markology#Markology()
-    aug END
-endif
-" }}}1
-
 " Setup {{{1
 " Set things up
 call s:MarkologySetup()
