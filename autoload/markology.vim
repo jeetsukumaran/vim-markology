@@ -43,7 +43,8 @@ lockvar s:marks_nlist
 lockvar s:marks_count
 
 if !exists('g:lmarks_names')
-    let g:lmarks_names = 'abcdefghijklmnopqrstuvwxyz''.'
+    " let g:lmarks_names = 'abcdefghijklmnopqrstuvwxyz''.'
+    let g:lmarks_names = 'abcdefghijklmnopqrstuvwxyz'
 endif
 
 if !exists('g:gmarks_names')
