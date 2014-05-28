@@ -39,7 +39,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 " }}}1
 
-" Global Options and Deefaults {{{1
+" Global Options and Defaults {{{1
 " Options: Set up some nice defaults
 if !exists('g:markology_enable'      ) | let g:markology_enable       = 1    | endif
 if !exists('g:markology_textlower'   ) | let g:markology_textlower    = "'\t"  | endif
@@ -128,14 +128,38 @@ if !exists("g:markology_disable_mappings") || !g:markology_disable_mappings
 endif
 " }}}1
 
-" Autocommands {{{1
-if g:markology_enable == 1
-    aug Markology
-        au!
-        autocmd CursorHold * call markology#Markology()
-        autocmd BufNewFile,Bufread * call markology#Markology()
-    aug END
-endif
+" Facultative Disabling of Default Mappings {{{1
+" So as not to interfere with 'm' key in easytree and nerdtree
+function! s:_disable_default_mkey_mappings_in_buffer()
+    if !exists("g:markology_disable_mappings") || !g:markology_disable_mappings
+        if !exists("g:markology_prefix_leader_on_default_mappings") || !g:markology_prefix_leader_on_default_mappings
+            for mkey in [
+                        \ 'm1',
+                        \ 'm0',
+                        \ 'm!',
+                        \ 'm,',
+                        \ 'm ',
+                        \ 'm+',
+                        \ 'm-',
+                        \ 'm_',
+                        \ 'm]',
+                        \ 'm[',
+                        \ 'm}',
+                        \ 'm{',
+                        \ 'm?',
+                        \ 'm^',
+                        \ 'm*',
+                        \ 'm',
+                        \]
+                let mkey_mapping = maparg(mkey)
+                if !empty(mkey_mapping) && mkey_mapping =~ "Markology"
+                    execute "unmap " . mkey
+                endif
+            endfor
+        endif
+    endif
+endfunction
+command MarkologyDisableDefaultMappingsInBuffer :call <SID>_disable_default_mkey_mappings_in_buffer()
 " }}}1
 
 " Override `m` {{{1
@@ -146,6 +170,20 @@ function! s:_m_key_override()
     call markology#Markology()
 endfunction
 nnoremap <silent> m :call <SID>_m_key_override()<CR>
+
+" }}}1
+
+" Autocommands {{{1
+if g:markology_enable == 1
+    aug Markology
+        au!
+        autocmd CursorHold * call markology#Markology()
+        autocmd BufNewFile,Bufread * call markology#Markology()
+        if !exists('g:markology_disable_m_keys_in_directory_explorers') || g:markology_disable_m_keys_in_directory_explorers
+            autocmd FileType nerdtree,easytree MarkologyDisableDefaultMappingsInBuffer
+        endif
+    aug END
+endif
 " }}}1
 
 " Restore State {{{1
