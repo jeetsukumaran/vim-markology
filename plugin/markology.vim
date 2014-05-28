@@ -53,21 +53,54 @@ if !exists('g:markology_hlline_other') | let g:markology_hlline_other = "0"  | e
 if !exists('g:markology_set_location_list_convenience_maps') | let g:markology_set_location_list_convenience_maps = 1  | endif
 " }}}1
 
+" Special Functions {{{1
+" So as not to interfere with 'm' key in easytree and nerdtree
+function! s:_enable_default_mkey_mappings_in_buffer()
+    if &ft == "easytree" || &ft == "nerdtree"
+        return
+    endif
+    if !hasmapto( '<Plug>MarkologyEnable' )               |  noremap <buffer> <silent> m1 :MarkologyEnable<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyDisable' )              |  noremap <buffer> <silent> m0 :MarkologyDisable<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyToggle' )               |  noremap <buffer> <silent> m! :MarkologyToggle<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyPlaceMarkToggle' )
+        noremap <buffer> <silent> m,       :MarkologyPlaceMarkToggle<cr>
+        noremap <buffer> <silent> m<SPACE> :MarkologyPlaceMarkToggle<cr>
+    endif
+    if !hasmapto( '<Plug>MarkologyPlaceMark' )            |  noremap <buffer> <silent> m+ :MarkologyPlaceMark<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyClearMark' )            |  noremap <buffer> <silent> m- :MarkologyClearMark<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyClearAll' )             |  noremap <buffer> <silent> m_ :MarkologyClearAll<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyNextLocalMarkPos' )     |  noremap <buffer> <silent> m] :MarkologyNextLocalMarkPos<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyPrevLocalMarkPos' )     |  noremap <buffer> <silent> m[ :MarkologyPrevLocalMarkPos<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyNextLocalMarkByAlpha' ) |  noremap <buffer> <silent> m{ :MarkologyNextLocalMarkByAlpha<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyPrevLocalMarkByAlpha' ) |  noremap <buffer> <silent> m} :MarkologyPrevLocalMarkByAlpha<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyLocationList' )         |  noremap <buffer> <silent> m? :MarkologyLocationList<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyQuickFix' )             |  noremap <buffer> <silent> m^ :MarkologyQuickFix<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyLineHighlightToggle' )  |  noremap <buffer> <silent> m* :MarkologyLineHighlightToggle<cr>|  endif
+endfunction
+
+function! s:_m_key_override()
+    execute 'normal! m'.nr2char(getchar())
+    call markology#Markology()
+endfunction
+
+" }}}1
+
 " Commands {{{1
-com! -nargs=0 MarkologyEnable                           :call markology#MarkologyEnable()
-com! -nargs=0 MarkologyDisable                          :call markology#MarkologyDisable()
-com! -nargs=0 MarkologyToggle                           :call markology#MarkologyToggle()
-com! -nargs=0 MarkologyClearMark                        :call markology#MarkologyClearMark()
-com! -nargs=0 MarkologyClearAll                         :call markology#MarkologyClearAll()
-com! -nargs=0 MarkologyPlaceMark                        :call markology#MarkologyPlaceMark()
-com! -nargs=0 MarkologyPlaceMarkToggle                  :call markology#MarkologyPlaceMarkToggle()
-com! -nargs=0 MarkologyNextLocalMarkPos                 :call markology#MarkologyNextByPos()
-com! -nargs=0 MarkologyPrevLocalMarkPos                 :call markology#MarkologyPrevByPos()
-com! -nargs=0 MarkologyNextLocalMarkByAlpha             :call markology#MarkologyNextByAlpha()
-com! -nargs=0 MarkologyPrevLocalMarkByAlpha             :call markology#MarkologyPrevByAlpha()
-com! -nargs=0 MarkologyLocationList                     :call markology#MarkologyMarksLocationList()
-com! -nargs=0 MarkologyQuickFix                         :call markology#MarkologyMarksQuickFix()
-com! -nargs=0 MarkologyLineHighlightToggle              :call markology#MarkologyLineHighlightToggle()
+command! -nargs=0 MarkologyEnable                           :call markology#MarkologyEnable()
+command! -nargs=0 MarkologyDisable                          :call markology#MarkologyDisable()
+command! -nargs=0 MarkologyToggle                           :call markology#MarkologyToggle()
+command! -nargs=0 MarkologyClearMark                        :call markology#MarkologyClearMark()
+command! -nargs=0 MarkologyClearAll                         :call markology#MarkologyClearAll()
+command! -nargs=0 MarkologyPlaceMark                        :call markology#MarkologyPlaceMark()
+command! -nargs=0 MarkologyPlaceMarkToggle                  :call markology#MarkologyPlaceMarkToggle()
+command! -nargs=0 MarkologyNextLocalMarkPos                 :call markology#MarkologyNextByPos()
+command! -nargs=0 MarkologyPrevLocalMarkPos                 :call markology#MarkologyPrevByPos()
+command! -nargs=0 MarkologyNextLocalMarkByAlpha             :call markology#MarkologyNextByAlpha()
+command! -nargs=0 MarkologyPrevLocalMarkByAlpha             :call markology#MarkologyPrevByAlpha()
+command! -nargs=0 MarkologyLocationList                     :call markology#MarkologyMarksLocationList()
+command! -nargs=0 MarkologyQuickFix                         :call markology#MarkologyMarksQuickFix()
+command! -nargs=0 MarkologyLineHighlightToggle              :call markology#MarkologyLineHighlightToggle()
+command! -nargs=0 MarkologyEnableDefaultMappingsInBuffer :call <SID>_enable_default_mkey_mappings_in_buffer()
 " }}}1
 
 " Plugs {{{1
@@ -91,23 +124,10 @@ nnoremap <silent> <Plug>MarkologyLineHighlightToggle    :MarkologyLineHighlightT
 " Set Default Mappings (NOTE: Leave the '|'s immediately following the '<cr>' so the mapping does not contain any trailing spaces!)
 if !exists("g:markology_disable_mappings") || !g:markology_disable_mappings
     if !exists("g:markology_prefix_leader_on_default_mappings") || !g:markology_prefix_leader_on_default_mappings
-        if !hasmapto( '<Plug>MarkologyEnable' )               |  noremap <silent> m1 :MarkologyEnable<cr>|  endif
-        if !hasmapto( '<Plug>MarkologyDisable' )              |  noremap <silent> m0 :MarkologyDisable<cr>|  endif
-        if !hasmapto( '<Plug>MarkologyToggle' )               |  noremap <silent> m! :MarkologyToggle<cr>|  endif
-        if !hasmapto( '<Plug>MarkologyPlaceMarkToggle' )
-            noremap <silent> m,       :MarkologyPlaceMarkToggle<cr>
-            noremap <silent> m<SPACE> :MarkologyPlaceMarkToggle<cr>
-        endif
-        if !hasmapto( '<Plug>MarkologyPlaceMark' )            |  noremap <silent> m+ :MarkologyPlaceMark<cr>|  endif
-        if !hasmapto( '<Plug>MarkologyClearMark' )            |  noremap <silent> m- :MarkologyClearMark<cr>|  endif
-        if !hasmapto( '<Plug>MarkologyClearAll' )             |  noremap <silent> m_ :MarkologyClearAll<cr>|  endif
-        if !hasmapto( '<Plug>MarkologyNextLocalMarkPos' )     |  noremap <silent> m] :MarkologyNextLocalMarkPos<cr>|  endif
-        if !hasmapto( '<Plug>MarkologyPrevLocalMarkPos' )     |  noremap <silent> m[ :MarkologyPrevLocalMarkPos<cr>|  endif
-        if !hasmapto( '<Plug>MarkologyNextLocalMarkByAlpha' ) |  noremap <silent> m{ :MarkologyNextLocalMarkByAlpha<cr>|  endif
-        if !hasmapto( '<Plug>MarkologyPrevLocalMarkByAlpha' ) |  noremap <silent> m} :MarkologyPrevLocalMarkByAlpha<cr>|  endif
-        if !hasmapto( '<Plug>MarkologyLocationList' )         |  noremap <silent> m? :MarkologyLocationList<cr>|  endif
-        if !hasmapto( '<Plug>MarkologyQuickFix' )             |  noremap <silent> m^ :MarkologyQuickFix<cr>|  endif
-        if !hasmapto( '<Plug>MarkologyLineHighlightToggle' )  |  noremap <silent> m* :MarkologyLineHighlightToggle<cr>|  endif
+        aug MarkologySetDefaultKeyMaps
+            au!
+            autocmd FileType * call <SID>_enable_default_mkey_mappings_in_buffer()
+        aug END
     else
         " Legacy ...
         if !hasmapto( '<Plug>MarkologyEnable' )               |  noremap <silent> <Leader>m1 :MarkologyEnable<cr>|  endif
@@ -128,49 +148,10 @@ if !exists("g:markology_disable_mappings") || !g:markology_disable_mappings
 endif
 " }}}1
 
-" Facultative Disabling of Default Mappings {{{1
-" So as not to interfere with 'm' key in easytree and nerdtree
-function! s:_disable_default_mkey_mappings_in_buffer()
-    if !exists("g:markology_disable_mappings") || !g:markology_disable_mappings
-        if !exists("g:markology_prefix_leader_on_default_mappings") || !g:markology_prefix_leader_on_default_mappings
-            for mkey in [
-                        \ 'm1',
-                        \ 'm0',
-                        \ 'm!',
-                        \ 'm,',
-                        \ 'm ',
-                        \ 'm+',
-                        \ 'm-',
-                        \ 'm_',
-                        \ 'm]',
-                        \ 'm[',
-                        \ 'm}',
-                        \ 'm{',
-                        \ 'm?',
-                        \ 'm^',
-                        \ 'm*',
-                        \ 'm',
-                        \]
-                let mkey_mapping = maparg(mkey)
-                if !empty(mkey_mapping) && mkey_mapping =~ "Markology"
-                    execute "unmap " . mkey
-                endif
-            endfor
-        endif
-    endif
-endfunction
-command MarkologyDisableDefaultMappingsInBuffer :call <SID>_disable_default_mkey_mappings_in_buffer()
-" }}}1
-
 " Override `m` {{{1
 " noremap <silent> m :exe 'norm \sm'.nr2char(getchar())<bar>call markology#Markology()<CR>
 " noremap <script> \sm m
-function! s:_m_key_override()
-    execute 'normal! m'.nr2char(getchar())
-    call markology#Markology()
-endfunction
 nnoremap <silent> m :call <SID>_m_key_override()<CR>
-
 " }}}1
 
 " Autocommands {{{1
@@ -179,9 +160,6 @@ if g:markology_enable == 1
         au!
         autocmd CursorHold * call markology#Markology()
         autocmd BufNewFile,Bufread * call markology#Markology()
-        if !exists('g:markology_disable_m_keys_in_directory_explorers') || g:markology_disable_m_keys_in_directory_explorers
-            autocmd FileType nerdtree,easytree MarkologyDisableDefaultMappingsInBuffer
-        endif
     aug END
 endif
 " }}}1
