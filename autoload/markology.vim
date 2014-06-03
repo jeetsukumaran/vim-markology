@@ -259,6 +259,7 @@ function! s:SetMarkologyStatus(state)
             autocmd CursorHold * call markology#Markology()
             autocmd BufNewFile,Bufread * call markology#Markology()
         aug END
+        redraw
         echo "Markology enabled"
     else
         let g:markology_enable = 0
@@ -267,6 +268,7 @@ function! s:SetMarkologyStatus(state)
             au!
             autocmd BufEnter * call markology#MarkologyHideAll()
         aug END
+        redraw
         echo "Markology disabled"
     endif
 endfunction!
@@ -533,6 +535,7 @@ fun! markology#MarkologyClearAll()
         endif
         let n = n + 1
     endw
+    " redraw
     echo "All marks cleared"
 endf
 
@@ -613,6 +616,7 @@ fun! markology#MarkologyPlaceMark()
     let c = strpart(s:IncludeMarks(), next_mark, 1)
     let b:previous_auto_mark = next_mark
     exe 'mark '.c
+    redraw
     echo "Mark '" . c . "' placed at line " . string(line("."))
     call markology#Markology()
 endf
