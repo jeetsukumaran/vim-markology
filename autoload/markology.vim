@@ -499,6 +499,7 @@ fun! markology#MarkologyClearMark()
             else
                 exe '1 mark '.c
             endif
+            echo "Mark '" . c . "' removed from line " . string(line("."))
             " Easwy, end
             let b:placed_{nm} = 1
         endif
@@ -609,6 +610,7 @@ fun! markology#MarkologyPlaceMark()
     let c = strpart(s:IncludeMarks(), next_mark, 1)
     let b:previous_auto_mark = next_mark
     exe 'mark '.c
+    echo "Mark '" . c . "' placed at line " . string(line("."))
     call markology#Markology()
 endf
 
@@ -635,7 +637,7 @@ function! markology#MarkologyNextByPos()
     endif
 endfunction
 
-function! markology#PrevByPos()
+function! markology#MarkologyPrevByPos()
     let l:mark = s:PrevLocalMark(line('.'))
     if empty(l:mark) && s:GetWrapSearch()
         let l:mark = s:PrevLocalMark(line('$')+1)
