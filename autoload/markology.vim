@@ -259,6 +259,7 @@ function! s:SetMarkologyStatus(state)
             autocmd CursorHold * call markology#Markology()
             autocmd BufNewFile,Bufread * call markology#Markology()
         aug END
+        echo "Markology enabled"
     else
         let g:markology_enable = 0
         call markology#MarkologyHideAll()
@@ -266,6 +267,7 @@ function! s:SetMarkologyStatus(state)
             au!
             autocmd BufEnter * call markology#MarkologyHideAll()
         aug END
+        echo "Markology disabled"
     endif
 endfunction!
 
@@ -531,6 +533,7 @@ fun! markology#MarkologyClearAll()
         endif
         let n = n + 1
     endw
+    echo "All marks cleared"
 endf
 
 " Function: MarkologyHideAll()
