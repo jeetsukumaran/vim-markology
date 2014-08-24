@@ -59,6 +59,9 @@ function! s:_enable_default_mkey_mappings_in_buffer()
     if &ft == "easytree" || &ft == "nerdtree"
         return
     endif
+    if exists("b:_markology_buffer_mapped")
+        return
+    endif
     if !hasmapto( '<Plug>MarkologyEnable' )               |  noremap <buffer> <silent> m1 :MarkologyEnable<cr>|  endif
     if !hasmapto( '<Plug>MarkologyDisable' )              |  noremap <buffer> <silent> m0 :MarkologyDisable<cr>|  endif
     if !hasmapto( '<Plug>MarkologyToggle' )               |  noremap <buffer> <silent> m! :MarkologyToggle<cr>|  endif
@@ -76,6 +79,7 @@ function! s:_enable_default_mkey_mappings_in_buffer()
     if !hasmapto( '<Plug>MarkologyLocationList' )         |  noremap <buffer> <silent> m? :MarkologyLocationList<cr>|  endif
     if !hasmapto( '<Plug>MarkologyQuickFix' )             |  noremap <buffer> <silent> m^ :MarkologyQuickFix<cr>|  endif
     if !hasmapto( '<Plug>MarkologyLineHighlightToggle' )  |  noremap <buffer> <silent> m* :MarkologyLineHighlightToggle<cr>|  endif
+    let b:_markology_buffer_mapped = 1
 endfunction
 
 function! s:_m_key_override()
@@ -126,7 +130,8 @@ if !exists("g:markology_disable_mappings") || !g:markology_disable_mappings
     if !exists("g:markology_prefix_leader_on_default_mappings") || !g:markology_prefix_leader_on_default_mappings
         aug MarkologySetDefaultKeyMaps
             au!
-            autocmd FileType * call <SID>_enable_default_mkey_mappings_in_buffer()
+            " autocmd FileType * call <SID>_enable_default_mkey_mappings_in_buffer()
+            autocmd BufRead,BufNewFile * call <SID>_enable_default_mkey_mappings_in_buffer()
         aug END
     else
         " Legacy ...
