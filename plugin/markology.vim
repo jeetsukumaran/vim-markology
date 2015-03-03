@@ -72,7 +72,12 @@ function! s:_enable_default_mkey_mappings_in_buffer()
     if !hasmapto( '<Plug>MarkologyPlaceMark' )            |  noremap <buffer> <silent> m+ :MarkologyPlaceMark<cr>|  endif
     if !hasmapto( '<Plug>MarkologyClearMark' )            |  noremap <buffer> <silent> m- :MarkologyClearMark<cr>|  endif
     if !hasmapto( '<Plug>MarkologyClearAll' )             |  noremap <buffer> <silent> m_ :MarkologyClearAll<cr>|  endif
-    if !hasmapto( '<Plug>MarkologyNextLocalMarkPos' )     |  noremap <buffer> <silent> m] :MarkologyNextLocalMarkPos<cr>|  endif
+    if !hasmapto( '<Plug>MarkologyNextLocalMarkPos' )
+        noremap <buffer> <silent> m] :MarkologyNextLocalMarkPos<cr>
+        if !get(g:, "markology_suppress_default_meta_key_maps", 0)
+            noremap <buffer> <silent> <M-m> :MarkologyNextLocalMarkPos<cr>
+        endif
+    endif
     if !hasmapto( '<Plug>MarkologyPrevLocalMarkPos' )     |  noremap <buffer> <silent> m[ :MarkologyPrevLocalMarkPos<cr>|  endif
     if !hasmapto( '<Plug>MarkologyNextLocalMarkByAlpha' ) |  noremap <buffer> <silent> m{ :MarkologyNextLocalMarkByAlpha<cr>|  endif
     if !hasmapto( '<Plug>MarkologyPrevLocalMarkByAlpha' ) |  noremap <buffer> <silent> m} :MarkologyPrevLocalMarkByAlpha<cr>|  endif
