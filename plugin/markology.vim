@@ -84,6 +84,13 @@ function! s:_enable_default_mkey_mappings_in_buffer()
     if !hasmapto( '<Plug>MarkologyLocationList' )         |  noremap <buffer> <silent> m? :MarkologyLocationList<cr>|  endif
     if !hasmapto( '<Plug>MarkologyQuickFix' )             |  noremap <buffer> <silent> m^ :MarkologyQuickFix<cr>|  endif
     if !hasmapto( '<Plug>MarkologyLineHighlightToggle' )  |  noremap <buffer> <silent> m* :MarkologyLineHighlightToggle<cr>|  endif
+
+    " Override `m` {{{1
+    " noremap <silent> m :exe 'norm \sm'.nr2char(getchar())<bar>call markology#Markology()<CR>
+    " noremap <script> \sm m
+    nnoremap <buffer> <silent> m :call <SID>_m_key_override()<CR>
+    " }}}1
+
     let b:_markology_buffer_mapped = 1
 endfunction
 
@@ -156,12 +163,6 @@ if !exists("g:markology_disable_mappings") || !g:markology_disable_mappings
         if !hasmapto( '<Plug>MarkologyLineHighlightToggle' )  |  noremap <silent> <Leader>m* :MarkologyLineHighlightToggle<cr>|  endif
     endif
 endif
-" }}}1
-
-" Override `m` {{{1
-" noremap <silent> m :exe 'norm \sm'.nr2char(getchar())<bar>call markology#Markology()<CR>
-" noremap <script> \sm m
-nnoremap <silent> m :call <SID>_m_key_override()<CR>
 " }}}1
 
 " Autocommands {{{1
