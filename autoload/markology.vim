@@ -708,9 +708,9 @@ function! markology#MarkologyMarksLocationList()
                 \'v:val.lnum > 0'))
     lopen
     if !exists("g:markology_set_location_list_convenience_maps") || g:markology_set_location_list_convenience_maps
-        nnoremap <buffer> <silent> q        :q<CR>
-        noremap  <buffer> <silent> <ESC>    :q<CR>
-        noremap  <buffer> <silent> <ENTER>  <CR>:lcl<CR>
+        nnoremap <buffer> <nowait><silent> q        :q<CR>
+        noremap  <buffer> <nowait><silent> <ESC>    :q<CR>
+        noremap  <buffer> <nowait><silent> <ENTER>  <CR>:lcl<CR>
     endif
 endfunction
 
