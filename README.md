@@ -12,6 +12,8 @@ spatially ("`m]`" and "`m[`") or lexicographically ("`m}`" and "`m{`").  You can
 also easily display all current marks in the location list window ("`m?`") or
 the quickfix window ("`m~`").
 
+![Screenshot](/_assets/Markology_Screenshot.png)
+
 Detailed usage description given in the help file, which can be viewed on-line
 here:
 
