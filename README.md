@@ -1,7 +1,7 @@
 
-Markology provides for the visualization, navigation, and management of Vim`'s
-(marks).  Visualization is through use of Vim`'s `'sign`' feature, and so use of
-this plugin requires that Vim be compiled with the `'sign`' option.
+Markology provides for the visualization, navigation, and management of Vim's
+(marks).  Visualization is through use of Vim's `sign` feature, and so use of
+this plugin requires that Vim be compiled with the `sign` option.
 
 Markology displays marks associated with the current line in the sign column or
 gutter of the window displaying the buffer (with the entire line highlighted
