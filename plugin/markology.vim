@@ -16,7 +16,6 @@
 ""  GNU General Public License <http://www.gnu.org/licenses/>
 ""  for more details.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Reload Guard {{{1
 if exists( "loaded_markology" )
     finish
@@ -85,11 +84,9 @@ function! s:_enable_default_mkey_mappings_in_buffer()
     if !hasmapto( '<Plug>MarkologyQuickFix' )             |  noremap <buffer> <silent> m^ :MarkologyQuickFix<cr>|  endif
     if !hasmapto( '<Plug>MarkologyLineHighlightToggle' )  |  noremap <buffer> <silent> m* :MarkologyLineHighlightToggle<cr>|  endif
 
-    " Override `m` {{{1
     " noremap <silent> m :exe 'norm \sm'.nr2char(getchar())<bar>call markology#Markology()<CR>
     " noremap <script> \sm m
     nnoremap <buffer> <silent> m :call <SID>_m_key_override()<CR>
-    " }}}1
 
     let b:_markology_buffer_mapped = 1
 endfunction
