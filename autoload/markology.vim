@@ -198,8 +198,6 @@ fun! s:MarkologySetup()
             if g:markology_hlline_lower
                 " let lhltext = 'linehl='.s:MarkologyDLink{nm}.nm
                 let lhltext = 'linehl=MarkologyHLLine'
-            else
-                let lhltext = 'linehl=Normal'
             endif
         elseif c =~# '[A-Z]'
             if strlen(g:markology_textupper) == 1
