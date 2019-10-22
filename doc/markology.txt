@@ -31,7 +31,7 @@ streamlines (the best) parts of:
             http://easwy.com/blog/archives/advanced-vim-skills-advanced-move-method/
 
         which fixes the issue of global marks showing up in files in which they
-        were *not* declared.
+        were NOT declared.
 
     3. Mark_Tools
 
